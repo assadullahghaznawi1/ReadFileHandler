@@ -12,7 +12,10 @@ namespace FileReaderHandler
         {
 
         }
+        XmlReader(string path, Boolean IsEncryptionActive) : base(path, IsEncryptionActive)
+        {
 
+        }
         public new string ReadFile()
         {
             return ReadFile();
