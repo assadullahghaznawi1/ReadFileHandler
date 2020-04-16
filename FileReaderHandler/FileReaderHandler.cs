@@ -7,12 +7,20 @@ using System.IO;
 
 namespace FileReaderHandler
 {
+    public enum Role
+    {
+        Operator,
+        Admin
+    }
     public enum FileType
     {
-        Text
+        Text,
+        Xml
     }
     public class FileReaderHandler
     {
+        private const string Admin = "admin";
+        private const string Message = "user is not authorized";
         protected string Path { get; set; }
         public Boolean IsEncryptionActive { get; set; }
         public FileReaderHandler(string path)
@@ -45,6 +53,18 @@ namespace FileReaderHandler
             catch (Exception e)
             {
                 return ("Error " + e.Message);
+            }
+        }
+
+        protected string ReadFileBySecurityrRole(Role userRole)
+        {
+            if (userRole == Role.Operator && Path.Contains(Admin))
+            {
+                return Message;
+            }
+            else
+            {
+                return ReadFile();
             }
         }
     }
