@@ -22,5 +22,10 @@ namespace FileReaderHandler
         {
             return ReadFile();
         }
+
+        public string ReadFileByRole(Role userRole)
+        {
+            return ReadFileBySecurityrRole(userRole);
+        }
     }
 }
