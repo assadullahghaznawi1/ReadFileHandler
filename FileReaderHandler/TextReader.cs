@@ -13,6 +13,11 @@ namespace FileReaderHandler
 
         }
 
+        TextReader(string path, Boolean IsEncryptionActive) : base(path, IsEncryptionActive)
+        {
+
+        }
+
         public new string ReadFile()
         {
             return ReadFile();

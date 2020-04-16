@@ -14,11 +14,17 @@ namespace FileReaderHandler
     public class FileReaderHandler
     {
         protected string Path { get; set; }
+        public Boolean IsEncryptionActive { get; set; }
         public FileReaderHandler(string path)
         {
             Path = path;
         }
 
+        public FileReaderHandler(string path, Boolean isEncryptionActive)
+        {
+            Path = path;
+            IsEncryptionActive = isEncryptionActive;
+        }
         protected string ReadFile()
         {
             try
@@ -26,6 +32,13 @@ namespace FileReaderHandler
                 StreamReader streamReader = new StreamReader(Path);
                 string result = streamReader.ReadToEnd();
                 streamReader.Close();
+
+                if (IsEncryptionActive)
+                {
+                    char[] resultChar = result.ToCharArray();
+                    Array.Reverse(resultChar);
+                    result = new String(resultChar);
+                }
 
                 return result;
             }
