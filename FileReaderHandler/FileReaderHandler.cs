@@ -15,7 +15,8 @@ namespace FileReaderHandler
     public enum FileType
     {
         Text,
-        Xml
+        Xml,
+        Json
     }
     public class FileReaderHandler
     {
